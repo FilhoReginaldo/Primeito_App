@@ -1,3 +1,5 @@
+import { HttpClientModule } from '@angular/common/http';
+import { FilmeDetalhesPageModule } from './../pages/filme-detalhes/filme-detalhes.module';
 import { LastMovieProvider } from './../providers/last-movie/last-movie';
 import { LoginPageModule } from './../pages/login/login.module';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -30,7 +32,9 @@ import { FeedPageModule } from '../pages/feed/feed.module';
     IonicModule.forRoot(MyApp),
     FeedPageModule,
     LoginPageModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule,
+    FilmeDetalhesPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
