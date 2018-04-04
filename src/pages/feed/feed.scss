@@ -1,8 +1,14 @@
 page-feed {
-    .feed_title {
-        color: #488aff;
+    .toolbar-background-md {
+        background: #488aff;
+        color: #fff;
     }
-    .feed_date {
-        color: #000;
+    .toolbar-title-md {
+        color: #fff;
+    }
+    .bar-button-default-md,
+    .bar-button-clear-md-default,
+    .bar-button-md-default {
+        color: #fff;
     }
 }
