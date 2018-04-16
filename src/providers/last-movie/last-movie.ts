@@ -15,12 +15,16 @@ export class LastMovieProvider {
     console.log('Hello LastMovieProvider Provider');
   }
 
-  getlastMovie(){
-    return this.httpClient.get(this.CaminhoApi +"/movie/popular?api_key=249cc1198bcb47518a280e1003b55904");
+  getlastMovie(page){
+    return this.httpClient.get(this.CaminhoApi +`/movie/popular?api_key=249cc1198bcb47518a280e1003b55904&page=${page}`);
   }
 
   getMovieDetalhe(filmeid){
     return this.httpClient.get(this.CaminhoApi +`/movie/${filmeid}?api_key=249cc1198bcb47518a280e1003b55904`);
+  }
+
+  getMovieReviews(filmeidVideos){
+    return this.httpClient.get(this.CaminhoApi + `/movie/${filmeidVideos}/reviews?api_key=249cc1198bcb47518a280e1003b55904`)
   }
 
 

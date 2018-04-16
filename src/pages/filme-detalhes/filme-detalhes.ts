@@ -1,3 +1,4 @@
+import { ReviewsPage } from './../reviews/reviews';
 import { LastMovieProvider } from './../../providers/last-movie/last-movie';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -26,7 +27,12 @@ export class FilmeDetalhesPage {
     public LastMovieProvider: LastMovieProvider) {
   }
 
-  ionViewDidEnter() {
+  abrirDetalhesVideo(filmeVideos) {
+    console.log(filmeVideos);
+    this.navCtrl.push("ReviewsPage", { id: filmeVideos.id });
+  }
+
+  detalhesFilme(){
     this.filmeid = this.navParams.get("id");
     this.LastMovieProvider.getMovieDetalhe(this.filmeid).subscribe
       (data =>{
@@ -35,5 +41,13 @@ export class FilmeDetalhesPage {
         console.log(error);
       }
   }
+
+
+
+  ionViewDidEnter() {
+    
+    this.detalhesFilme();
+  }
+
 
 }

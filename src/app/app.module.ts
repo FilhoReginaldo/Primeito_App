@@ -1,3 +1,4 @@
+import { ReviewsPageModule } from './../pages/reviews/reviews.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FilmeDetalhesPageModule } from './../pages/filme-detalhes/filme-detalhes.module';
 import { LastMovieProvider } from './../providers/last-movie/last-movie';
@@ -31,6 +32,7 @@ import { FeedPageModule } from '../pages/feed/feed.module';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     FeedPageModule,
+    ReviewsPageModule,
     LoginPageModule,
     HttpModule,
     HttpClientModule,
