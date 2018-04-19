@@ -21,15 +21,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class FilmeDetalhesPage {
   public filme;
   public filmeid;
+  public video;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    public LastMovieProvider: LastMovieProvider) {
+    public LastMovieProvider: LastMovieProvider,)
+    {
   }
 
-  abrirDetalhesVideo(filmeVideos) {
-    console.log(filmeVideos);
-    this.navCtrl.push("ReviewsPage", { id: filmeVideos.id });
+  abrirDetalhesComentario(filmeComentario) {
+    console.log(filmeComentario);
+    this.navCtrl.push("ReviewsPage", { id: filmeComentario.id });
   }
 
   detalhesFilme(){
@@ -42,11 +44,20 @@ export class FilmeDetalhesPage {
       }
   }
 
-
+  videoFilme(){
+    this.LastMovieProvider.getMovieVideos(this.filmeid).subscribe(
+      data=>{
+        this.video = data["results"];
+      }, error=>{
+        console.log(error);
+      }
+    )
+  }
 
   ionViewDidEnter() {
     
     this.detalhesFilme();
+    this.videoFilme();
   }
 
 

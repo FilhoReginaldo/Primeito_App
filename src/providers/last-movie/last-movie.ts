@@ -10,23 +10,27 @@ import { Http } from '@angular/http';
 */
 @Injectable()
 export class LastMovieProvider {
-  private CaminhoApi = "https://api.themoviedb.org/3";
+  private caminhoApi = "https://api.themoviedb.org/3";
+  private senha = "api_key=249cc1198bcb47518a280e1003b55904";
   constructor(public httpClient: HttpClient) {
     console.log('Hello LastMovieProvider Provider');
   }
 
   getlastMovie(page){
-    return this.httpClient.get(this.CaminhoApi +`/movie/popular?api_key=249cc1198bcb47518a280e1003b55904&page=${page}`);
+    return this.httpClient.get(this.caminhoApi +"/movie/popular?"+this.senha+`&page=${page}`);
   }
 
   getMovieDetalhe(filmeid){
-    return this.httpClient.get(this.CaminhoApi +`/movie/${filmeid}?api_key=249cc1198bcb47518a280e1003b55904`);
+    return this.httpClient.get(this.caminhoApi +`/movie/${filmeid}?`+ this.senha);
   }
 
-  getMovieReviews(filmeidVideos){
-    return this.httpClient.get(this.CaminhoApi + `/movie/${filmeidVideos}/reviews?api_key=249cc1198bcb47518a280e1003b55904`)
+  getMovieReviews(filmeidComentario){
+    return this.httpClient.get(this.caminhoApi + `/movie/${filmeidComentario}/reviews?`+ this.senha);
   }
 
+  getMovieVideos(filmeid){
+    return this.httpClient.get(this.caminhoApi + `/movie/${filmeid}/videos?` + this.senha);
+  }
 
 
 }

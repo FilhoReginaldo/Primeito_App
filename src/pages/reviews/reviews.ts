@@ -11,9 +11,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   ]
 })
 export class ReviewsPage {
-  public filmeidVideo;
-  public filmeVideo;
+  public filmeidComentario;
+  public filmeComentario;
   public listar = new Array<any>();
+  public you = "http://www.youtube.com/";
 
   constructor(
     public navCtrl: NavController, 
@@ -21,9 +22,9 @@ export class ReviewsPage {
     public LastMovieProvider: LastMovieProvider){
   }
 
-  videoFilme(){
-    this.filmeidVideo = this.navParams.get("id");
-    this.LastMovieProvider.getMovieReviews(this.filmeidVideo).subscribe(
+  ComentarioFilme(){
+    this.filmeidComentario = this.navParams.get("id");
+    this.LastMovieProvider.getMovieReviews(this.filmeidComentario).subscribe(
       data=>{
         this.listar = data["results"];
         console.log(data["results"]);
@@ -35,7 +36,7 @@ export class ReviewsPage {
 
   ionViewDidEnter(){
 
-    this.videoFilme();
+    this.ComentarioFilme();
    
   }
 }
