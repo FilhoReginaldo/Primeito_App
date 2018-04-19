@@ -8,13 +8,20 @@
 
 <ion-content padding>
 
-    <ion-card *ngIf="filmeVideo">
-        <!--Area da img Avatar-->
-        <ion-item>
+    <h2 class="feed_title">Comentarios</h2>
 
-            <h2>{{ filmeVideo.id }}</h2>
-            <!-- Titulo filme-->
+    <ion-card *ngFor="let listar of listar">
+        <ion-item>
+            <h2 class="feed_title">{{ listar.author }}<i class="fi-telephone"></i></h2>
         </ion-item>
+        <ion-card-content>
+            <h4 class="feed_title">Comentarios:</h4>
+            <p>{{ listar.content }}</p>
+        </ion-card-content>
+        <ion-card-content>
+            <p>{{ listar.url }}</p>
+            <!--Descricao-->
+        </ion-card-content>
 
     </ion-card>
 

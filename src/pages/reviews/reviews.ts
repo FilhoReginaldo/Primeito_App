@@ -13,6 +13,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ReviewsPage {
   public filmeidVideo;
   public filmeVideo;
+  public listar = new Array<any>();
 
   constructor(
     public navCtrl: NavController, 
@@ -24,7 +25,8 @@ export class ReviewsPage {
     this.filmeidVideo = this.navParams.get("id");
     this.LastMovieProvider.getMovieReviews(this.filmeidVideo).subscribe(
       data=>{
-        this.filmeVideo = data;
+        this.listar = data["results"];
+        console.log(data["results"]);
       },error=>{
         console.log(error);
       } 
