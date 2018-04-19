@@ -1,14 +1,7 @@
 import { ReviewsPage } from './../reviews/reviews';
 import { LastMovieProvider } from './../../providers/last-movie/last-movie';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the FilmeDetalhesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -19,13 +12,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   ]
 })
 export class FilmeDetalhesPage {
+  public loader;
   public filme;
   public filmeid;
   public video;
+  public refresher;
+  public isrefresher: boolean = false;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    public LastMovieProvider: LastMovieProvider,)
+    public LastMovieProvider: LastMovieProvider,
+    public loadingCtrl: LoadingController)
     {
   }
 
@@ -34,13 +31,28 @@ export class FilmeDetalhesPage {
     this.navCtrl.push("ReviewsPage", { id: filmeComentario.id });
   }
 
+  carregamentoPagina(){
+    this.loader =this.loadingCtrl.create({
+      content:"Carregando..."
+    });
+    this.loader.present();
+  }
+
+  FecharCarreganto(){
+    this.loader.dismiss();
+  }
+
+
   detalhesFilme(){
+    this.carregamentoPagina();
     this.filmeid = this.navParams.get("id");
     this.LastMovieProvider.getMovieDetalhe(this.filmeid).subscribe
       (data =>{
         this.filme = data;
+        this.FecharCarreganto();
       }), error=>{
         console.log(error);
+        this.FecharCarreganto();
       }
   }
 
@@ -55,7 +67,7 @@ export class FilmeDetalhesPage {
   }
 
   ionViewDidEnter() {
-    
+
     this.detalhesFilme();
     this.videoFilme();
   }

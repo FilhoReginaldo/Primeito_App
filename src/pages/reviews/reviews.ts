@@ -1,6 +1,6 @@
 import { LastMovieProvider } from './../../providers/last-movie/last-movie';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Content } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -11,6 +11,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   ]
 })
 export class ReviewsPage {
+  public loader;
   public filmeidComentario;
   public filmeComentario;
   public listar = new Array<any>();
@@ -19,16 +20,31 @@ export class ReviewsPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public LastMovieProvider: LastMovieProvider){
+    public LastMovieProvider: LastMovieProvider,
+    public loadingCtrl: LoadingController){
+  }
+
+  carregarPagina(){
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando..."
+    });
+    this.loader.present();
+  }
+
+  fecharCarregamento(){
+    this.loader.dismiss();
   }
 
   ComentarioFilme(){
+    this.carregarPagina();
     this.filmeidComentario = this.navParams.get("id");
     this.LastMovieProvider.getMovieReviews(this.filmeidComentario).subscribe(
       data=>{
+        this.fecharCarregamento();
         this.listar = data["results"];
         console.log(data["results"]);
       },error=>{
+        this.fecharCarregamento();
         console.log(error);
       } 
     )
