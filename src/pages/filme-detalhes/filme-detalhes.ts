@@ -16,8 +16,6 @@ export class FilmeDetalhesPage {
   public filme;
   public filmeid;
   public video;
-  public refresher;
-  public isrefresher: boolean = false;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
